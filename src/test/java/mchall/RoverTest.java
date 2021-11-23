@@ -1,21 +1,41 @@
 package mchall;
 
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class RoverTest {
 
-    @Test
-    public void returnStartingPositionOfRoverWithoutAnyCommand(){
-        final String emptyCommand = "";
+//    @Test
+//    public void returnStartingPositionOfRoverWithoutAnyCommand(){
+//        final String emptyCommand = "";
+//
+//        Assertions.assertEquals(("1 2 N"), new Rover (1,2, "N").execute(emptyCommand));
+//    }
 
-        assertEquals(("1 2 N"), new Rover (1,2, "N").execute(emptyCommand));
+    @ParameterizedTest
+    @CsvSource({
+            "1, 2, N, M, '1 3 N'",
+            "1, 3, N, MM, '1 5 N'",
+            "1, 8, S, MM, '1 6 S'"
+    })
+    public void moveRover(int initialX, int initialY, String initialCardinal,
+                          String command, String expectedPosition) {
+
+        Assertions.assertEquals(expectedPosition, new Rover (initialX, initialY, initialCardinal).execute(command));
     }
 
+
+
+    //Direction Tests
     @Test
     public void returnNorthWhenEastWithLeftCommand(){
-
+        //final String leftCommand = "L";
+        //assertEquals(("1 2 N"), new Rover (1,2, "E").execute(leftCommand));
     }
 
     @Test
