@@ -21,15 +21,28 @@ public class RoverTest {
     @CsvSource({
             "1, 2, N, M, '1 3 N'",
             "1, 3, N, MM, '1 5 N'",
-            "1, 8, S, MM, '1 6 S'"
+            "1, 8, S, MM, '1 6 S'",
+            "1, 8, S, MMMMMM, '1 2 S'",
+            "5, 2, W, MMM, '2 2 W'",
+            "8, 2, W, MMMMM, '3 2 W'",
+            "2, 2, E, MMM, '5 2 E'",
+            "3, 2, E, MM, '1 2 E'"
     })
     public void moveRover(int initialX, int initialY, String initialCardinal,
                           String command, String expectedPosition) {
 
-        Assertions.assertEquals(expectedPosition, new Rover (initialX, initialY, initialCardinal).execute(command));
+        Assertions.assertEquals(expectedPosition, new Rover (initialX, initialY, initialDirection(initialCardinal)).execute(command));
     }
 
-
+    private Direction initialDirection(String cardinal) {
+        if (cardinal.equals("N"))
+            return new North();
+        if (cardinal.equals("E"))
+            return new East();
+        if (cardinal.equals("S"))
+            return new South();
+        return new West();
+    }
 
     //Direction Tests
     @Test

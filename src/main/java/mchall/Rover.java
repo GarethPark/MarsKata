@@ -1,14 +1,15 @@
 package mchall;
 
+//Public at top, private at bottom
+
 public class Rover {
 
-    //private static final String MOVE_COMMAND = "Move";
     private int x;
     private int y;
-    //private final String cardinal;
-    private String cardinal;
+    //private String cardinal;
+    private Direction cardinal;
 
-    public Rover (int x, int y, String cardinal){
+    public Rover (int x, int y, Direction cardinal){
         this.x = x;
         this.y = y;
         this.cardinal = cardinal;
@@ -18,21 +19,19 @@ public class Rover {
 
         String[] allCommands = commands.split("");
         for (String command: allCommands) {
-            if (command.equals("M")){
-                if (facing("N")){
+            if (command.equals("M")) {
+                if (facing("N")) {
                     y++;
                 }
-                if (facing("S")){
+                if (facing("S")) {
                     y--;
                 }
             }
-            if (command.equals("L")){
-                this.cardinal = "West";
-            }
-            if (command.equals("R")){
-                this.cardinal = "East";
+            if (isCardinalCommand(command)) {
+                this.processCardinalCommand(command);
             }
         }
+
         return buildReturnValue();
     }
 
@@ -42,8 +41,15 @@ public class Rover {
     private String buildReturnValue(){
         return this.x + " " + this.y + " " + this.cardinal;  //TODO - use string builder
     }
-
-    private boolean currentDirection(String direction){
-        return this.cardinal.equals(direction);
+    private void processCardinalCommand(String command){
+        if (command.equals("L")){
+            this.cardinal = this.cardinal.turnLeft();
+        }
+        if (command.equals("R")){
+            this.cardinal = this.cardinal.turnRight();
+        }
+    }
+    private Boolean isCardinalCommand(String command){
+        return (command == "L" || command == "R");
     }
 }
