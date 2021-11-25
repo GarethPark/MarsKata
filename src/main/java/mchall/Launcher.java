@@ -8,20 +8,16 @@ import java.util.ListIterator;
 public class Launcher {
     //55 12N LMLMLMLMM 33E MMRMMRMRRM
     public static String processCommands(String upperRightCoordinates, String inputCommands){
-
+        String output="";
         List<String> commandList = new ArrayList<String>(Arrays.asList(inputCommands.split(" ")));
         ListIterator cmdItr = commandList.listIterator();
 
         while(cmdItr.hasNext()) {
-            String initalPosition = cmdItr.next().toString();
-            RoverController controller = new RoverController()
-            System.out.println(cmdItr.next());
+            String initialPosition = cmdItr.next().toString();
+            RoverController controller = new RoverController(initialPosition.charAt(0), initialPosition.charAt(1), Character.toString(initialPosition.charAt(2)));
+            String finalPosition = controller.execute(cmdItr.next().toString());
+            output = output + finalPosition;
         }
-
-
-        //Create new RoverController (context) with initial position
-        // pass commands and commands that do concrete state
-        //Execute Commands
-        //Add to array
+        return "TO DO return Array";
     }
 }

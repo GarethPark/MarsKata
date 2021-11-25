@@ -13,5 +13,5 @@ public abstract class Rover {
     public abstract Rover turnLeft();
     public abstract Rover turnRight();
     public abstract Rover move();
-    public abstract String toString();
+    public abstract String currentPosition();
 }

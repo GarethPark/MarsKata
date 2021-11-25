@@ -14,8 +14,8 @@ public class RoverLookingEast extends Rover {
         return new RoverLookingSouth(x, y);
     }
     @Override
-    public String toString(){
-        return "East";
+    public String currentPosition(){
+        return this.x + this.y + "E";
     }
     @Override
     public Rover move() {
