@@ -7,7 +7,7 @@ public class RoverLookingNorth extends Rover {
     }
     @Override
     public Rover turnLeft(){
-        return new RoverLookingEast(x, y);
+        return new RoverLookingWest(x, y);
     }
     @Override
     public Rover turnRight(){

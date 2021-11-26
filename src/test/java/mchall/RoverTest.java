@@ -8,13 +8,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class RoverTest {
 
-//    @Test
-//    public void returnStartingPositionOfRoverWithoutAnyCommand(){
-//        final String emptyCommand = "";
-//
-//        Assertions.assertEquals(("1 2 N"), new Rover (1,2, "N").execute(emptyCommand));
-//    }
-
     @ParameterizedTest
     @CsvSource({
             "55, '12N M', '13N'",
@@ -32,43 +25,32 @@ public class RoverTest {
 
     @ParameterizedTest
     @CsvSource({
-            "55, '12N M', '13N'"
+            "55, '12N R', '12E'",
+            "55, '12N R 33N LLL', '12E 33E'",
+            "55, '12E R 33E LLL', '12S 33S'",
+            "55, '12E RRR 33E LL', '12N 33W'",
+            "55, '12W RRR 33W LL', '12S 33E'",
+            "55, '12W RR 33W LRLL', '12E 33E'",
+            "55, '12S RL 33S LLRL', '12S 33N'",
+            "55, '12S RRL 33S RRRR', '12W 33S'"
     })
     public void turnRover(String upperRightCoordinates, String commands, String expectedOutput) {
         Assertions.assertEquals(expectedOutput, Launcher.launchRovers(upperRightCoordinates, commands));
     }
 
-
-    //"55, '12N M 33E MMM', '13N 36E'"
-    //"55, '12N M', '13N'"
-    //"55, '12N LMLMLMLMM 33E MMRMMRMRRM', '13N 51E'"
-
-   /* @ParameterizedTest
+    @ParameterizedTest
     @CsvSource({
-            "1, 2, N, M, '1 3 N'",
-            "1, 3, N, MM, '1 5 N'",
-            "1, 8, S, MM, '1 6 S'",
-            "1, 8, S, MMMMMM, '1 2 S'",
-            "5, 2, W, MMM, '2 2 W'",
-            "8, 2, W, MMMMM, '3 2 W'",
-            "2, 2, E, MMM, '5 2 E'",
-            "3, 2, E, MM, '1 2 E'"
-    }) */
-    /*public void moveRover(int initialX, int initialY, String initialCardinal,
-                          String command, String expectedPosition) {
-
-        Assertions.assertEquals(expectedPosition, new RoverController(initialX, initialY, initialDirection(initialCardinal)).execute(command));
-    } */
-
-    /*private Rover initialDirection(String cardinal) {
-        if (cardinal.equals("N"))
-            return new RoverLookingNorth();
-        if (cardinal.equals("E"))
-            return new RoverLookingEast();
-        if (cardinal.equals("S"))
-            return new RoverLookingSouth();
-        return new RoverLookingWest();
-    }*/
-
-
+            "55, '12N RM', '22E'",
+            "55, '12N MR', '13E'",
+            "55, '12N RMMR 33N LML', '32S 23S'",
+            "55, '12E RM 33E MLL', '11S 43W'",
+            "55, '22E MR 13E LMM', '32S 15N'",
+            "55, '22W MR 13W LMM', '12N 11S'",
+            "55, '33W MR 13W LLMM', '23N 33E'",
+            "55, '33S MRM 13S LLMM', '22W 15N'",
+            "55, '11S RRM 12S LRLLMMM', '12N 15N'"
+    })
+    public void moveAndTurnRover(String upperRightCoordinates, String commands, String expectedOutput) {
+        Assertions.assertEquals(expectedOutput, Launcher.launchRovers(upperRightCoordinates, commands));
+    }
 }
