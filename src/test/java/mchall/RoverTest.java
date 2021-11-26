@@ -17,12 +17,14 @@ public class RoverTest {
 
     @ParameterizedTest
     @CsvSource({
-            "55, '12N LMLMLMLMM 33E MMRMMRMRRM', '13N 51E'"
+            "55, '12N M 33N MMM', '13N 36N'"
     })
     public void moveRover(String upperRightCoordinates, String commands, String expectedOutput) {
-        Assertions.assertEquals(expectedOutput, Launcher.processCommands(upperRightCoordinates, commands));
+        Assertions.assertEquals(expectedOutput, Launcher.launchRovers(upperRightCoordinates, commands));
     }
-
+    //"55, '12N M 33E MMM', '13N 36E'"
+    //"55, '12N M', '13N'"
+    //"55, '12N LMLMLMLMM 33E MMRMMRMRRM', '13N 51E'"
 
    /* @ParameterizedTest
     @CsvSource({

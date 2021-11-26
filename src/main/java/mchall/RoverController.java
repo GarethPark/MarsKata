@@ -1,7 +1,5 @@
 package mchall;
 
-//Public at top, private at bottom
-
 import mchall.commands.CommandFactory;
 import mchall.rover.*;
 
@@ -19,13 +17,15 @@ public class RoverController {
 
     public String execute(String commands) {
         CommandFactory commandFactory;
-        commandFactory = new CommandFactory(this.marsRover);
-
         String[] allCommands = getCommands(commands);
 
         for (String command: allCommands) {
-            commandFactory.commandFrom(command).execute();
+            System.out.println("execute command " + command);
+            commandFactory = new CommandFactory(this.marsRover);
+            this.marsRover = commandFactory.commandFrom(command).execute();
+            System.out.println("current Pso = " + this.marsRover.currentPosition());
         }
+
         return this.marsRover.currentPosition();
     }
 
