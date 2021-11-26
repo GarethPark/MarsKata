@@ -23,6 +23,6 @@ public class Launcher {
             String finalPosition = controller.execute(cmdItr.next().toString());
             output = output.trim() + " " + finalPosition.trim();
         }
-        return output;
+        return output.trim();
     }
 }

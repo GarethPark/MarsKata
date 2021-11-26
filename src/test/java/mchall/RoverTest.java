@@ -17,11 +17,28 @@ public class RoverTest {
 
     @ParameterizedTest
     @CsvSource({
-            "55, '12N M 33N MMM', '13N 36N'"
+            "55, '12N M', '13N'",
+            "55, '12N M 33N MMM', '13N 36N'",
+            "55, '12E M 23E MMM', '22E 53E'",
+            "55, '32E M 13E MMMM', '42E 53E'",
+            "55, '32W M 53W MMM', '22W 23W'",
+            "55, '43W M 56W MMM', '33W 26W'",
+            "55, '22S M 55S MMM', '21S 52S'",
+            "55, '24S M 55S MMMM', '23S 51S'"
     })
     public void moveRover(String upperRightCoordinates, String commands, String expectedOutput) {
         Assertions.assertEquals(expectedOutput, Launcher.launchRovers(upperRightCoordinates, commands));
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "55, '12N M', '13N'"
+    })
+    public void turnRover(String upperRightCoordinates, String commands, String expectedOutput) {
+        Assertions.assertEquals(expectedOutput, Launcher.launchRovers(upperRightCoordinates, commands));
+    }
+
+
     //"55, '12N M 33E MMM', '13N 36E'"
     //"55, '12N M', '13N'"
     //"55, '12N LMLMLMLMM 33E MMRMMRMRRM', '13N 51E'"
