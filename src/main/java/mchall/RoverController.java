@@ -2,6 +2,9 @@ package mchall;
 
 //Public at top, private at bottom
 
+import mchall.commands.CommandFactory;
+import mchall.rover.*;
+
 public class RoverController {
 
     private final int initialX;
@@ -15,20 +18,15 @@ public class RoverController {
     }
 
     public String execute(String commands) {
-        String[] allCommands = commands.split("");
+        CommandFactory commandFactory;
+        commandFactory = new CommandFactory(this.marsRover);
+
+        String[] allCommands = getCommands(commands);
 
         for (String command: allCommands) {
-            if (command.equals("M")) {
-                this.marsRover = this.marsRover.move();
-            }
-            if (command.equals("L")){
-                this.marsRover = this.marsRover.turnLeft();
-            }
-            if (command.equals("R")){
-                this.marsRover = this.marsRover.turnRight();
-            }
+            commandFactory.commandFrom(command).execute();
         }
-        return this.marsRover.toString() ; //TO DO needs method
+        return this.marsRover.currentPosition();
     }
 
     private Rover createNewRover(String initialCardinal){
@@ -39,5 +37,8 @@ public class RoverController {
         if (initialCardinal.equals("S"))
             return new RoverLookingSouth(initialX, initialY);
         return new RoverLookingWest(initialX, initialY);
+    }
+    private String[] getCommands(String commands){
+        return commands.split("");
     }
 }

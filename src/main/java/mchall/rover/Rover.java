@@ -1,5 +1,4 @@
-package mchall;
-
+package mchall.rover;
 
 public abstract class Rover {
     protected final int x;

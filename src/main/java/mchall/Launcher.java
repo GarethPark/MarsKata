@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
-
+//55 12N LMLMLMLMM 33E MMRMMRMRRM
 public class Launcher {
-    //55 12N LMLMLMLMM 33E MMRMMRMRRM
+
     public static String processCommands(String upperRightCoordinates, String inputCommands){
         String output="";
         List<String> commandList = new ArrayList<String>(Arrays.asList(inputCommands.split(" ")));
@@ -18,6 +18,6 @@ public class Launcher {
             String finalPosition = controller.execute(cmdItr.next().toString());
             output = output + finalPosition;
         }
-        return "TO DO return Array";
+        return output;
     }
 }

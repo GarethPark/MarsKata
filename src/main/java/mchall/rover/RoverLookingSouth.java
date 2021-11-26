@@ -1,4 +1,4 @@
-package mchall;
+package mchall.rover;
 
 public class RoverLookingSouth extends Rover {
 
