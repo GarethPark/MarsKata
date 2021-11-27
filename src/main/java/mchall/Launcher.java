@@ -42,7 +42,7 @@ public class Launcher {
         return new Terrain(this.getInitialX(upperRightCoordinates), this.getInitialY(upperRightCoordinates));
     }
     private void AppendRoverOutputToFinalOutput(String roverOutput){
-        if(this.finalOutput == ""){
+        if(this.finalOutput.equals("")){
             this.finalOutput = roverOutput;
         }
         else{
