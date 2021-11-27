@@ -14,7 +14,7 @@ public class CommandFactory {
         initializeCommands(rover);
     }
 
-    public Command commandFrom(String command) {
+    public Command getCommand(String command) {
         return commands.get(command);
     }
 

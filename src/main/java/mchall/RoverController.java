@@ -8,7 +8,6 @@ public class RoverController {
     private final int initialX;
     private final int initialY;
     private Rover marsRover;
-    private Terrain terrain;
 
     public RoverController(int initialX, int initialY, String initialDirection, Terrain terrain){
         this.initialX = initialX;
@@ -22,7 +21,7 @@ public class RoverController {
 
         for (String command: allCommands) {
             commandFactory = new CommandFactory(this.marsRover);
-            this.marsRover = commandFactory.commandFrom(command).execute();
+            this.marsRover = commandFactory.getCommand(command).execute();
         }
 
         return this.marsRover.currentPosition();
