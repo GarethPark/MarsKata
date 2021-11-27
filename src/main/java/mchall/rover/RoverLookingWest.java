@@ -21,6 +21,7 @@ public class RoverLookingWest extends Rover {
     }
     @Override
     public Rover move() {
-        return new RoverLookingWest(x - 1, y, terrain);
+        int newXCoordinate = x - 1 < 0 ? 0 : x - 1;
+        return new RoverLookingWest(newXCoordinate, y, terrain);
     }
 }

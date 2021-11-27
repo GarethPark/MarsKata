@@ -22,8 +22,7 @@ public class Launcher {
             String initialDirection = getInitialDirection(initialPosition);
 
             RoverController controller = new RoverController(initialX, initialY, initialDirection, terrain);
-            String finalPosition = controller.executeCommands(cmdItr.next().toString());
-            output = output.trim() + " " + finalPosition.trim();
+            output = output.trim() + " " + controller.executeCommands(cmdItr.next().toString()).trim();
         }
         return output.trim();
     }
