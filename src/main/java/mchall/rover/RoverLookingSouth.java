@@ -1,17 +1,19 @@
 package mchall.rover;
 
+import mchall.Terrain;
+
 public class RoverLookingSouth extends Rover {
 
-    public RoverLookingSouth(int initialX, int initialY) {
-        super(initialX,initialY);
+    public RoverLookingSouth(int initialX, int initialY, Terrain terrain) {
+        super(initialX,initialY, terrain);
     }
     @Override
     public Rover turnLeft(){
-        return new RoverLookingEast(x, y);
+        return new RoverLookingEast(x, y, terrain);
     }
     @Override
     public Rover turnRight(){
-        return new RoverLookingWest(x, y);
+        return new RoverLookingWest(x, y, terrain);
     }
     @Override
     public String currentPosition(){
@@ -19,6 +21,6 @@ public class RoverLookingSouth extends Rover {
     }
     @Override
     public Rover move() {
-        return new RoverLookingSouth(x, y - 1);
+        return new RoverLookingSouth(x, y - 1, terrain);
     }
 }

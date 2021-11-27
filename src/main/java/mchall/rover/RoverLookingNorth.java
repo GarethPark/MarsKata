@@ -1,26 +1,27 @@
 package mchall.rover;
 
+import mchall.Terrain;
+
 public class RoverLookingNorth extends Rover {
 
-    public RoverLookingNorth(int initialX, int initialY) {
-        super(initialX,initialY);
+    public RoverLookingNorth(int initialX, int initialY, Terrain terrain) {
+        super(initialX,initialY, terrain);
     }
     @Override
     public Rover turnLeft(){
-        return new RoverLookingWest(x, y);
+        return new RoverLookingWest(x, y, terrain);
     }
     @Override
     public Rover turnRight(){
-        return new RoverLookingEast(x, y);
+        return new RoverLookingEast(x, y, terrain);
     }
     @Override
     public String currentPosition(){
-        System.out.println("this x " + this.x);
-        System.out.println("this y " + this.y);
         return Integer.toString(this.x) + Integer.toString(this.y) + "N";
     }
     @Override
     public Rover move() {
-        return new RoverLookingNorth(x, y + 1);
+        int newYCoordinate = y + 1 > terrain.getMaximumY() ? terrain.getMaximumY() : y + 1;
+        return new RoverLookingNorth(x, newYCoordinate, terrain);
     }
 }

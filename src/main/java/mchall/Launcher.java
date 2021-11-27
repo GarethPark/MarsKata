@@ -6,23 +6,41 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class Launcher {
-    //Change method name - it's doing more than 1 thing
-    public static String launchRovers(String upperRightCoordinates, String inputCommands){
-        String output="";
-        List<String> commandList = new ArrayList<String>(Arrays.asList(inputCommands.split(" ")));
+    //Change method name - it's doing more than 1 thing - what does it actually do?
+    public String launchRovers(String upperRightCoordinates, String commands){
+        String output=""; //change this name
+
+        Terrain terrain = createTerrain(upperRightCoordinates);
+        List<String> commandList = createCommandList(commands);
         ListIterator cmdItr = commandList.listIterator();
 
         while(cmdItr.hasNext()) {
             String initialPosition = cmdItr.next().toString();
-            System.out.println(initialPosition.charAt(0));
-            int initialX = Character.getNumericValue(initialPosition.charAt(0));
-            System.out.println("inital x var = " + initialX);
-            int initialY = Character.getNumericValue(initialPosition.charAt(1));
-            String initialDirection = Character.toString(initialPosition.charAt(2));
-            RoverController controller = new RoverController(initialX, initialY, initialDirection);
-            String finalPosition = controller.execute(cmdItr.next().toString());
+
+            int initialX = getInitialX(initialPosition);
+            int initialY = getInitialY(initialPosition);
+            String initialDirection = getInitialDirection(initialPosition);
+
+            RoverController controller = new RoverController(initialX, initialY, initialDirection, terrain);
+            String finalPosition = controller.executeCommands(cmdItr.next().toString());
             output = output.trim() + " " + finalPosition.trim();
         }
         return output.trim();
+    }
+    private List<String> createCommandList(String commands){
+        return new ArrayList<String>(Arrays.asList(commands.split(" ")));
+    }
+    //Make names more generic
+    private int getInitialX(String initialPosition){
+        return Character.getNumericValue(initialPosition.charAt(0));
+    }
+    private int getInitialY(String initialPosition){
+        return Character.getNumericValue(initialPosition.charAt(1));
+    }
+    private String getInitialDirection(String initialPosition){
+        return Character.toString(initialPosition.charAt(2));
+    }
+    private Terrain createTerrain(String  upperRightCoordinates){
+        return new Terrain(this.getInitialX(upperRightCoordinates), this.getInitialY(upperRightCoordinates));
     }
 }

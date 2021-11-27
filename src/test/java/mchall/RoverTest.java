@@ -1,17 +1,18 @@
 package mchall;
 
-import static org.junit.Assert.assertEquals;
-
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class RoverTest {
 
+    private Launcher launcher = new Launcher();
+
     @ParameterizedTest
     @CsvSource({
             "55, '12N M', '13N'",
-            "55, '12N M 33N MMM', '13N 36N'",
+            "55, '12N M 33N MMM', '13N 35N'",
             "55, '12E M 23E MMM', '22E 53E'",
             "55, '32E M 13E MMMM', '42E 53E'",
             "55, '32W M 53W MMM', '22W 23W'",
@@ -20,7 +21,7 @@ public class RoverTest {
             "55, '24S M 55S MMMM', '23S 51S'"
     })
     public void moveRover(String upperRightCoordinates, String commands, String expectedOutput) {
-        Assertions.assertEquals(expectedOutput, Launcher.launchRovers(upperRightCoordinates, commands));
+        Assertions.assertEquals(expectedOutput, launcher.launchRovers(upperRightCoordinates, commands));
     }
 
     @ParameterizedTest
@@ -35,7 +36,7 @@ public class RoverTest {
             "55, '12S RRL 33S RRRR', '12W 33S'"
     })
     public void turnRover(String upperRightCoordinates, String commands, String expectedOutput) {
-        Assertions.assertEquals(expectedOutput, Launcher.launchRovers(upperRightCoordinates, commands));
+        Assertions.assertEquals(expectedOutput, launcher.launchRovers(upperRightCoordinates, commands));
     }
 
     @ParameterizedTest
@@ -51,6 +52,6 @@ public class RoverTest {
             "55, '11S RRM 12S LRLLMMM', '12N 15N'"
     })
     public void moveAndTurnRover(String upperRightCoordinates, String commands, String expectedOutput) {
-        Assertions.assertEquals(expectedOutput, Launcher.launchRovers(upperRightCoordinates, commands));
+        Assertions.assertEquals(expectedOutput, launcher.launchRovers(upperRightCoordinates, commands));
     }
 }
