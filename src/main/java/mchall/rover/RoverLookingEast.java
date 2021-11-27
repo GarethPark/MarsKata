@@ -5,7 +5,7 @@ import mchall.Terrain;
 public class RoverLookingEast extends Rover {
 
     public RoverLookingEast(int initialX, int initialY, Terrain terrain) {
-        super(initialX,initialY, terrain);
+        super(initialX, initialY, terrain);
     }
     @Override
     public Rover turnLeft(){
