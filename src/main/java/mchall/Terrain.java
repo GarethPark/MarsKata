@@ -2,19 +2,19 @@ package mchall;
 
 public class Terrain {
 
-    private int maximumX = 0;
-    private int maximumY = 0;
+    private int maxX = 0;
+    private int maxY = 0;
 
-    public Terrain(int maximumX, int maximumY) {
-        this.maximumX = maximumX;
-        this.maximumY = maximumY;
+    public Terrain(int maxX, int maxY) {
+        this.maxX = maxX;
+        this.maxY = maxY;
     }
 
-    public int getMaximumX() {
-        return maximumX;
+    public int getMaxX() {
+        return maxX;
     }
 
-    public int getMaximumY() {
-        return maximumY;
+    public int getMaxY() {
+        return maxY;
     }
 }

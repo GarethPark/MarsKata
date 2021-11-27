@@ -21,7 +21,7 @@ public class RoverLookingEast extends Rover {
     }
     @Override
     public Rover move() {
-        int newXCoordinate = x + 1 > terrain.getMaximumX() ? terrain.getMaximumX() : x + 1;
+        int newXCoordinate = x + 1 > terrain.getMaxX() ? terrain.getMaxX() : x + 1;
         return new RoverLookingEast(newXCoordinate, y, terrain);
     }
 }
